@@ -104,13 +104,4 @@ public class Antelope extends Animal{
         this.world = world;
     }
 
-    @Override
-    public String toString() {
-        return getSymbol();
-    }
-
-//    @Override
-//    public int compareTo(Organism anotherOrganism) {
-//        return super.compareTo(anotherOrganism);
-//    }
 }

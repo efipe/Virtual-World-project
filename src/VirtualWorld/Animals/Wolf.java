@@ -1,6 +1,5 @@
 package VirtualWorld.Animals;
 
-import VirtualWorld.Organism;
 import VirtualWorld.World;
 
 public class Wolf extends Animal{
@@ -100,13 +99,4 @@ public class Wolf extends Animal{
         this.world = world;
     }
 
-    @Override
-    public String toString() {
-        return getSymbol();
-    }
-
-    @Override
-    public int compareTo(Organism anotherOrganism) {
-        return super.compareTo(anotherOrganism);
-    }
 }

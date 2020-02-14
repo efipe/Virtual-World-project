@@ -84,8 +84,4 @@ public abstract class Animal extends Organism implements Comparable<Organism> {
         return getSymbol();
     }
 
-    @Override
-    public int compareTo(Organism anotherOrganism) {
-        return super.compareTo(anotherOrganism);
-    }
 }

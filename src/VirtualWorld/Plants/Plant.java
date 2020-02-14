@@ -8,8 +8,7 @@ public abstract class Plant extends Organism {
 
     private int strength;
     private int initiative = 0;
-    private int posX;
-    private int posY;
+    private int[] positionXY;
     public World world;
 
 
@@ -21,5 +20,8 @@ public abstract class Plant extends Organism {
     }
 
 
-
+    @Override
+    public String toString() {
+        return getSymbol();
+    }
 }
