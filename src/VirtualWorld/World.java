@@ -10,13 +10,15 @@ import java.util.*;
 
 public class World {
 
-    private int mapHeight = 2;
-    private int mapWidth = 2;
+    private int columns = 20;
+    private int rows = 6;
     private List<Organism> organismList;
     private Organism[][] worldMap;
 
 
     public World() {
+        organismList = new ArrayList<>();
+        worldMap = new Organism[columns][rows];
     }
 
 
@@ -26,39 +28,44 @@ public class World {
 
 
     public void drawWorld() {
-        populateWorld();
-        int i = 0;
-        for (i = 0; i < mapWidth; i++) {
+
+        //todo size modification & cleanup
+
+        System.out.println(organismList);
+
+        for (int i = 0; i < columns + 15; i++) {
             System.out.print("-");
         }
-        for (i = 0; i < mapHeight; i++) {
+
+        for (int row = 0; row < rows; row++) {
             System.out.println();
-            for (int j = 0; j < mapWidth; j++) {
-                if (worldMap[i][j] == null) {
+            for (int col = 0; col < columns; col++) {
+                if (worldMap[col][row] == null) {
                     System.out.print('*');
                 } else {
-                    System.out.print(worldMap[i][j].getSymbol());
+                    System.out.print(worldMap[col][row].getSymbol());
                 }
             }
         }
+
         System.out.println();
-        for (i = 0; i < mapWidth; i++) {
+        for (int i = 0; i < columns + 15; i++) {
             System.out.print("-");
         }
     }
 
-    public void defineWorldSize() {
-        System.out.println("Welcome to the Virtual World");
-        System.out.println();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Define map width: ");
-        this.mapWidth = scanner.nextInt();
-        System.out.println("Define map height: ");
-        this.mapHeight = scanner.nextInt();
-    }
+//    public void defineWorldSize() {
+//        System.out.println("Welcome to the Virtual World");
+//        System.out.println();
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Define map width: ");
+//        this. = scanner.nextInt();
+//        System.out.println("Define map height: ");
+//        this. = scanner.nextInt();
+//    }
 
     public void populateWorld() {
-        worldMap = new Organism[mapWidth][mapHeight];
+
         organismList = Arrays.asList(
                 new Turtle(checkIfPositionIsAvailable(), this),
                 new Fox(checkIfPositionIsAvailable(), this),
@@ -73,23 +80,17 @@ public class World {
         for (Organism organism : organismList) {
             int[] positionToSave = organism.getPositionXY();
             worldMap[positionToSave[0]][positionToSave[1]] = organism;
+
         }
-
-
-        System.out.println(organismList);
-        System.out.println();
-
         Collections.sort(organismList);
-
-        System.out.println(organismList);
     }
 
     public int[] checkIfPositionIsAvailable() {
         boolean condition = false;
         int[] newCoordinates = new int[2];
         while (!condition) {
-            int posX = new SplittableRandom().nextInt(1, mapHeight);
-            int posY = new SplittableRandom().nextInt(1, mapWidth);
+            int posX = new SplittableRandom().nextInt(0, columns - 1);
+            int posY = new SplittableRandom().nextInt(0, rows - 1);
             if (worldMap[posX][posY] == null) {
                 condition = true;
                 newCoordinates = new int[]{posX, posY};
