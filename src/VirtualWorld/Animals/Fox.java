@@ -2,7 +2,7 @@ package VirtualWorld.Animals;
 
 import VirtualWorld.World;
 
-public class Fox extends Animal{
+public class Fox extends Animal {
     private int strength;
     private int initiative;
     private int[] positionXY;
@@ -21,13 +21,24 @@ public class Fox extends Animal{
         this.world = world;
     }
 
-    private void action() {
+    @Override
+    public void action() {
+        int[] newPos = calculateNewCoordinates();
+        if (world.getWorldMap()[newPos[0]][newPos[1]] != null) {
+            while (world.getWorldMap()[newPos[0]][newPos[1]].getInitiative() > initiative){
+                newPos = calculateNewCoordinates();
+            }
+            colission(newPos);
+        } else {
+            setPositionXY(newPos);
+        }
+    }
+
+    public void colission(int[] collisionPos) {
+
 
     }
 
-    private void colission() {
-
-    }
 
     @Override
     public int getStrength() {

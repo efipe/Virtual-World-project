@@ -21,9 +21,7 @@ public class Wolf extends Animal{
         this.world = world;
     }
 
-    private void action() {
 
-    }
 
     private void colission() {
 

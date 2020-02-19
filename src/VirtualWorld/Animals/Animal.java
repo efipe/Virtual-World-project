@@ -3,25 +3,31 @@ package VirtualWorld.Animals;
 import VirtualWorld.Organism;
 import VirtualWorld.World;
 
-public abstract class Animal extends Organism implements Comparable<Organism> {
+public abstract class Animal extends Organism {
+//        implements Comparable<Organism> {
 
     private int strength;
     private int initiative;
-    private int posX;
-    private int posY;
+    private int[] positionXY;
     private int age;
     private boolean isAlive;
     private String symbol;
     private World world;
 
+    @Override
+    public void action() {
+        int[] newPos = calculateNewCoordinates();
+        if (world.getWorldMap()[newPos[0]][newPos[1]] != null) {
+            colission(newPos);
+        } else {
+            setPositionXY(newPos);
+        }
+    }
 
-    private void action() {
+    private void colission(int[] collisionPos) {
 
     }
 
-    private void colission() {
-
-    }
 
     @Override
     public int getStrength() {
@@ -83,5 +89,16 @@ public abstract class Animal extends Organism implements Comparable<Organism> {
     public String toString() {
         return getSymbol();
     }
+
+    @Override
+    public int[] getPositionXY() {
+        return positionXY;
+    }
+
+    @Override
+    public void setPositionXY(int[] positionXY) {
+        this.positionXY = positionXY;
+    }
+
 
 }

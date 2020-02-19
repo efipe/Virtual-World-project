@@ -21,8 +21,9 @@ public class Sheep extends Animal{
         this.world = world;
     }
 
-    private void action() {
-
+    @Override
+    public void action() {
+        super.action();
     }
 
     private void colission() {

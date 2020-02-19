@@ -1,5 +1,7 @@
 package VirtualWorld;
 
+import java.util.SplittableRandom;
+
 public abstract class Organism implements Comparable<Organism> {
 
     private int strength;
@@ -20,9 +22,10 @@ public abstract class Organism implements Comparable<Organism> {
         this.world = world;
     }
 
-    private void action() {
+    public void action() {
 
     }
+
 
     private void colission() {
 
@@ -30,6 +33,27 @@ public abstract class Organism implements Comparable<Organism> {
 
     private void draw() {
     }
+
+    public int[] calculateNewCoordinates() {
+        int[] position = new int[2];
+        if (getPositionXY()[0] == 0) {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0], getPositionXY()[0] + 1);
+        } else if (getPositionXY()[0] == world.getColumns() - 1) {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0] - 1, getPositionXY()[0]);
+        } else {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0] - 1, getPositionXY()[0] + 1);
+        }
+
+        if (getPositionXY()[1] == 0) {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1], getPositionXY()[1] + 1);
+        } else if (getPositionXY()[0] == world.getRows() - 1) {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1] - 1, getPositionXY()[1]);
+        } else {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1] - 1, getPositionXY()[1] + 1);
+        }
+        return position;
+    }
+
 
     public int getAge() {
         return age;
@@ -89,5 +113,7 @@ public abstract class Organism implements Comparable<Organism> {
     public String toString() {
         return this.symbol;
     }
+
+
 }
 

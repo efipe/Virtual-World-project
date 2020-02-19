@@ -99,7 +99,21 @@ public class World {
         return newCoordinates;
     }
 
+    public int getColumns() {
+        return columns;
+    }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public List<Organism> getOrganismList() {
+        return organismList;
+    }
+
+    public Organism[][] getWorldMap() {
+        return worldMap;
+    }
 }
 
 

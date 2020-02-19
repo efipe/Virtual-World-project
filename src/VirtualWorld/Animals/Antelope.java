@@ -2,7 +2,9 @@ package VirtualWorld.Animals;
 
 import VirtualWorld.World;
 
-public class Antelope extends Animal{
+import java.util.SplittableRandom;
+
+public class Antelope extends Animal {
 
     private int strength;
     private int initiative;
@@ -24,15 +26,33 @@ public class Antelope extends Animal{
 
     private void action() {
 
+
     }
 
     private void colission() {
 
     }
 
+    @Override
+    public int[] calculateNewCoordinates() {
+        int[] position = new int[2];
+        if (getPositionXY()[0] == 0) {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0], getPositionXY()[0] + 2);
+        } else if (getPositionXY()[0] == world.getColumns() - 1) {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0] - 2, getPositionXY()[0]);
+        } else {
+            position[0] = new SplittableRandom().nextInt(getPositionXY()[0] - 2, getPositionXY()[0] + 2);
+        }
 
-
-
+        if (getPositionXY()[1] == 0) {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1], getPositionXY()[1] + 2);
+        } else if (getPositionXY()[0] == world.getRows() - 2) {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1] - 2, getPositionXY()[1]);
+        } else {
+            position[1] = new SplittableRandom().nextInt(getPositionXY()[1] - 2, getPositionXY()[1] + 2);
+        }
+        return position;
+    }
 
     @Override
     public int getStrength() {

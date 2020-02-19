@@ -2,7 +2,9 @@ package VirtualWorld.Animals;
 
 import VirtualWorld.World;
 
-public class Turtle extends Animal{
+import java.util.SplittableRandom;
+
+public class Turtle extends Animal {
     private int strength;
     private int initiative;
     private int[] positionXY;
@@ -22,11 +24,22 @@ public class Turtle extends Animal{
         this.world = world;
     }
 
-    private void action() {
+    @Override
+    public void action() {
+        int chanceToStay = 75;
+        int rnd = new SplittableRandom().nextInt(0, 100);
+        if (rnd > chanceToStay) {
+            int[] newPos = calculateNewCoordinates();
+            if (world.getWorldMap()[newPos[0]][newPos[1]] != null) {
+                colission(newPos);
+            } else {
+                setPositionXY(newPos);
+            }
+        }
 
     }
 
-    private void colission() {
+    private void colission(int[] collisionPos) {
 
     }
 
