@@ -22,9 +22,20 @@ public class Wolf extends Animal{
     }
 
 
+    @Override
+    public void action() {
+        super.action();
+    }
 
-    private void colission() {
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
 
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Wolf newBorn = new Wolf(super.calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
     }
 
     @Override

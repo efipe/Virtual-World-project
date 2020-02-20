@@ -3,8 +3,7 @@ package VirtualWorld.Animals;
 import VirtualWorld.Organism;
 import VirtualWorld.World;
 
-public abstract class Animal extends Organism {
-//        implements Comparable<Organism> {
+public abstract class Animal extends Organism implements Comparable<Organism> {
 
     private int strength;
     private int initiative;
@@ -24,8 +23,16 @@ public abstract class Animal extends Organism {
         }
     }
 
-    private void colission(int[] collisionPos) {
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
 
+
+
+    @Override
+    public int[] calculateNewCoordinates() {
+        return super.calculateNewCoordinates();
     }
 
 

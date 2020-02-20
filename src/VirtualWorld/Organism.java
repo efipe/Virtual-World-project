@@ -9,6 +9,27 @@ public abstract class Organism implements Comparable<Organism> {
     private int[] positionXY;
     private String symbol;
     private int age;
+    private boolean isAlive = true;
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
 
     private World world;
 
@@ -23,12 +44,50 @@ public abstract class Organism implements Comparable<Organism> {
     }
 
     public void action() {
-
+        int[] newPos = calculateNewCoordinates();
+        if (world.getWorldMap()[newPos[0]][newPos[1]] != null) {
+            colission(newPos);
+        } else {
+            setPositionXY(newPos);
+        }
     }
 
 
-    private void colission() {
+    public void colission(int[] collisionPos) {
+        // Todo switches!!!
+        Organism organism = world.getWorldMap()[collisionPos[0]][collisionPos[1]];
 
+        if (organism.getSymbol().equals("T")) {
+            if (strength > 5) {
+                organism.setAlive(false);
+            }
+        } else if (organism.getSymbol().equals(symbol)) {
+            reproduction(collisionPos);
+        } else if (organism.getSymbol().equals("A")) {
+            int chanceToDodge = 50;
+            int check = new SplittableRandom().nextInt(0, 101);
+            if (check > chanceToDodge) {
+                organism.setPositionXY(calculateNewCoordinates());
+            }
+        } else {
+            if (strength == organism.getStrength()) {
+                if (age > organism.getAge()) {
+                    organism.setAlive(false);
+                    setPositionXY(collisionPos);
+                } else {
+                    setAlive(false);
+                }
+            } else if (strength > organism.getStrength()) {
+                organism.setAlive(false);
+                setPositionXY(collisionPos);
+            } else {
+                setAlive(false);
+            }
+        }
+
+    }
+
+    public void reproduction(int[] collisionPos) {
     }
 
     private void draw() {
@@ -36,6 +95,7 @@ public abstract class Organism implements Comparable<Organism> {
 
     public int[] calculateNewCoordinates() {
         int[] position = new int[2];
+
         if (getPositionXY()[0] == 0) {
             position[0] = new SplittableRandom().nextInt(getPositionXY()[0], getPositionXY()[0] + 1);
         } else if (getPositionXY()[0] == world.getColumns() - 1) {

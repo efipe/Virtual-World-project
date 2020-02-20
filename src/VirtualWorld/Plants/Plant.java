@@ -3,6 +3,8 @@ package VirtualWorld.Plants;
 import VirtualWorld.Organism;
 import VirtualWorld.World;
 
+import java.util.SplittableRandom;
+
 public abstract class Plant extends Organism {
 
 
@@ -12,11 +14,18 @@ public abstract class Plant extends Organism {
     public World world;
 
 
+    @Override
+    public void action() {
+        int chanceToReproduce = 60;
+        int ch = new SplittableRandom().nextInt(0, 101);
+        if (ch > chanceToReproduce) {
+            reproduction(positionXY);
+        }
+    }
 
-
-
-    private void action() {
-
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
     }
 
 

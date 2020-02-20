@@ -22,6 +22,22 @@ public class Guarana extends Plant{
     }
 
     @Override
+    public void action() {
+        super.action();
+    }
+
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
+
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Guarana newBorn = new Guarana(calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
+    }
+
+    @Override
     public int getStrength() {
         return strength;
     }

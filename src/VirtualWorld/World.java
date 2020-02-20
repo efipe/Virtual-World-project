@@ -14,6 +14,7 @@ public class World {
     private int rows = 6;
     private List<Organism> organismList;
     private Organism[][] worldMap;
+    private List<Organism> tempList;
 
 
     public World() {
@@ -23,6 +24,7 @@ public class World {
 
 
     private void executeRound() {
+
 
     }
 
@@ -89,8 +91,8 @@ public class World {
         boolean condition = false;
         int[] newCoordinates = new int[2];
         while (!condition) {
-            int posX = new SplittableRandom().nextInt(0, columns - 1);
-            int posY = new SplittableRandom().nextInt(0, rows - 1);
+            int posX = new SplittableRandom().nextInt(0, columns);
+            int posY = new SplittableRandom().nextInt(0, rows);
             if (worldMap[posX][posY] == null) {
                 condition = true;
                 newCoordinates = new int[]{posX, posY};
@@ -113,6 +115,14 @@ public class World {
 
     public Organism[][] getWorldMap() {
         return worldMap;
+    }
+
+    public List<Organism> getTempList() {
+        return tempList;
+    }
+
+    public void setTempList(List<Organism> tempList) {
+        this.tempList = tempList;
     }
 }
 

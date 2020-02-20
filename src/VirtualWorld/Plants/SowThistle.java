@@ -22,6 +22,22 @@ public class SowThistle extends Plant{
     }
 
     @Override
+    public void action() {
+        super.action();
+    }
+
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
+
+    @Override
+    public void reproduction(int[] collisionPos) {
+        SowThistle newBorn = new SowThistle(calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
+    }
+
+    @Override
     public int getStrength() {
         return strength;
     }

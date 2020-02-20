@@ -21,6 +21,28 @@ public class Belladonna extends Plant {
         this.world = world;
     }
 
+
+    @Override
+    public void action() {
+        super.action();
+    }
+
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
+
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Belladonna newBorn = new Belladonna(calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
+    }
+
+    @Override
+    public int[] calculateNewCoordinates() {
+        return super.calculateNewCoordinates();
+    }
+
     @Override
     public int getStrength() {
         return strength;

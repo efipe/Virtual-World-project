@@ -34,11 +34,16 @@ public class Fox extends Animal {
         }
     }
 
+    @Override
     public void colission(int[] collisionPos) {
-
-
+        super.colission(collisionPos);
     }
 
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Fox newBorn = new Fox(super.calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
+    }
 
     @Override
     public int getStrength() {

@@ -26,8 +26,15 @@ public class Sheep extends Animal{
         super.action();
     }
 
-    private void colission() {
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
 
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Sheep newBorn = new Sheep(super.calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
     }
 
     @Override

@@ -24,13 +24,20 @@ public class Antelope extends Animal {
         this.world = world;
     }
 
-    private void action() {
-
-
+    @Override
+    public void action() {
+        super.action();
     }
 
-    private void colission() {
+    @Override
+    public void colission(int[] collisionPos) {
+        super.colission(collisionPos);
+    }
 
+    @Override
+    public void reproduction(int[] collisionPos) {
+        Antelope newBorn = new Antelope(super.calculateNewCoordinates(), world);
+        world.getTempList().add(newBorn);
     }
 
     @Override
