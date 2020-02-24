@@ -3,22 +3,21 @@ package VirtualWorld.Animals;
 import VirtualWorld.World;
 
 public class Fox extends Animal {
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
+
 
     public Fox(int[] positionXY, World world) {
         this.strength = 3;
         this.initiative = 7;
         this.positionXY = positionXY;
+        this.symbol = "F";
         this.age = 0;
         this.isAlive = true;
-        this.symbol = "F";
         this.world = world;
+    }
+
+    @Override
+    public int[] calculateNewCoordinates() {
+        return super.calculateNewCoordinates();
     }
 
     @Override

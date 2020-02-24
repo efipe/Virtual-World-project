@@ -3,21 +3,15 @@ package VirtualWorld.Animals;
 import VirtualWorld.World;
 
 public class Wolf extends Animal{
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
+
 
     public Wolf(int[] positionXY, World world) {
         this.strength = 9;
         this.initiative = 5;
         this.positionXY = positionXY;
+        this.symbol = "T";
         this.age = 0;
         this.isAlive = true;
-        this.symbol = "W";
         this.world = world;
     }
 

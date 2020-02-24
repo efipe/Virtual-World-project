@@ -3,21 +3,15 @@ package VirtualWorld.Plants;
 import VirtualWorld.World;
 
 public class SowThistle extends Plant{
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
+
 
     public SowThistle(int[] positionXY, World world) {
         this.strength = 0;
         this.initiative = 0;
         this.positionXY = positionXY;
+        this.symbol = "st";
         this.age = 0;
         this.isAlive = true;
-        this.symbol = "st";
         this.world = world;
     }
 

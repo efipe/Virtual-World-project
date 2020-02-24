@@ -10,11 +10,11 @@ import java.util.*;
 
 public class World {
 
-    private int columns = 20;
-    private int rows = 6;
-    private List<Organism> organismList;
-    private Organism[][] worldMap;
-    private List<Organism> tempList;
+    protected int columns = 20;
+    protected int rows = 6;
+    protected List<Organism> organismList;
+    protected Organism[][] worldMap;
+    protected List<Organism> tempList;
 
 
     public World() {
@@ -23,9 +23,20 @@ public class World {
     }
 
 
-    private void executeRound() {
-
-
+    public void executeRound() {
+        tempList = new ArrayList<>();
+        for (Organism organism : organismList) {
+            organism.action();
+            organism.setAge(organism.getAge() + 1);
+        }
+        for (Organism organism : organismList) {
+            if (organism.isAlive()) {
+                tempList.add(organism);
+            }
+        }
+        organismList = tempList;
+        recreateWorldMap();
+        drawWorld();
     }
 
 
@@ -67,7 +78,6 @@ public class World {
 //    }
 
     public void populateWorld() {
-
         organismList = Arrays.asList(
                 new Turtle(checkIfPositionIsAvailable(), this),
                 new Fox(checkIfPositionIsAvailable(), this),
@@ -79,10 +89,14 @@ public class World {
                 new Guarana(checkIfPositionIsAvailable(), this),
                 new SowThistle(checkIfPositionIsAvailable(), this)
         );
+        recreateWorldMap();
+    }
+
+    private void recreateWorldMap() {
+        worldMap = new Organism[columns][rows];
         for (Organism organism : organismList) {
             int[] positionToSave = organism.getPositionXY();
             worldMap[positionToSave[0]][positionToSave[1]] = organism;
-
         }
         Collections.sort(organismList);
     }
@@ -91,8 +105,8 @@ public class World {
         boolean condition = false;
         int[] newCoordinates = new int[2];
         while (!condition) {
-            int posX = new SplittableRandom().nextInt(0, columns);
-            int posY = new SplittableRandom().nextInt(0, rows);
+            int posX = new SplittableRandom().nextInt(0, columns-1);
+            int posY = new SplittableRandom().nextInt(0, rows-1);
             if (worldMap[posX][posY] == null) {
                 condition = true;
                 newCoordinates = new int[]{posX, posY};

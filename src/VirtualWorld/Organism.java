@@ -4,43 +4,22 @@ import java.util.SplittableRandom;
 
 public abstract class Organism implements Comparable<Organism> {
 
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private String symbol;
-    private int age;
-    private boolean isAlive = true;
+    protected int strength;
+    protected int initiative;
+    protected int[] positionXY;
+    protected String symbol;
+    protected int age;
+    protected boolean isAlive;
+    protected World world;
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public void setInitiative(int initiative) {
-        this.initiative = initiative;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    private World world;
-
-    public Organism() {
-    }
-
-    public Organism(int strength, int initiative, int[] positionXY, World world) {
-        this.strength = strength;
-        this.initiative = initiative;
+    public Organism(int[] positionXY, World world) {
         this.positionXY = positionXY;
+        this.age = 0;
+        this.isAlive = true;
         this.world = world;
+    }
+
+    protected Organism() {
     }
 
     public void action() {
@@ -90,12 +69,8 @@ public abstract class Organism implements Comparable<Organism> {
     public void reproduction(int[] collisionPos) {
     }
 
-    private void draw() {
-    }
-
     public int[] calculateNewCoordinates() {
         int[] position = new int[2];
-
         if (getPositionXY()[0] == 0) {
             position[0] = new SplittableRandom().nextInt(getPositionXY()[0], getPositionXY()[0] + 1);
         } else if (getPositionXY()[0] == world.getColumns() - 1) {
@@ -112,6 +87,30 @@ public abstract class Organism implements Comparable<Organism> {
             position[1] = new SplittableRandom().nextInt(getPositionXY()[1] - 1, getPositionXY()[1] + 1);
         }
         return position;
+    }
+
+
+    @Override
+    public int compareTo(Organism anotherOrganism) {
+        int compareValue = 0;
+
+        if (this.getInitiative() > anotherOrganism.getInitiative()) {
+            compareValue = -1;
+        } else if (this.getInitiative() < anotherOrganism.getInitiative()) {
+            compareValue = 1;
+        } else if (this.getInitiative() == anotherOrganism.getInitiative()) {
+            if (this.getAge() > anotherOrganism.getAge()) {
+                compareValue = -1;
+            } else {
+                compareValue = 1;
+            }
+        }
+        return compareValue;
+    }
+
+    @Override
+    public String toString() {
+        return this.symbol;
     }
 
 
@@ -151,29 +150,25 @@ public abstract class Organism implements Comparable<Organism> {
         this.age = age;
     }
 
-    @Override
-    public int compareTo(Organism anotherOrganism) {
-        int compareValue = 0;
-
-        if (this.getInitiative() > anotherOrganism.getInitiative()) {
-            compareValue = -1;
-        } else if (this.getInitiative() < anotherOrganism.getInitiative()) {
-            compareValue = 1;
-        } else if (this.getInitiative() == anotherOrganism.getInitiative()) {
-            if (this.getAge() > anotherOrganism.getAge()) {
-                compareValue = -1;
-            } else {
-                compareValue = 1;
-            }
-        }
-        return compareValue;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
-    @Override
-    public String toString() {
-        return this.symbol;
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
     }
 
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
 
 }
 

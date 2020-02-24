@@ -6,21 +6,14 @@ import java.util.SplittableRandom;
 
 public class Antelope extends Animal {
 
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
 
     public Antelope(int[] positionXY, World world) {
         this.strength = 4;
         this.initiative = 4;
         this.positionXY = positionXY;
+        this.symbol = "A";
         this.age = 0;
         this.isAlive = true;
-        this.symbol = "A";
         this.world = world;
     }
 

@@ -5,22 +5,15 @@ import VirtualWorld.World;
 import java.util.SplittableRandom;
 
 public class Turtle extends Animal {
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
+
 
 
     public Turtle(int[] positionXY, World world) {
-        this.strength = 2;
         this.initiative = 1;
         this.positionXY = positionXY;
+        this.symbol = "T";
         this.age = 0;
         this.isAlive = true;
-        this.symbol = "T";
         this.world = world;
     }
 

@@ -1,18 +1,14 @@
 package VirtualWorld.Plants;
 
 import VirtualWorld.Organism;
-import VirtualWorld.World;
 
 import java.util.SplittableRandom;
 
 public abstract class Plant extends Organism {
 
 
-    private int strength;
-    private int initiative = 0;
-    private int[] positionXY;
-    public World world;
-
+    protected Plant() {
+    }
 
     @Override
     public void action() {

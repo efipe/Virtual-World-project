@@ -5,13 +5,10 @@ import VirtualWorld.World;
 
 public abstract class Animal extends Organism implements Comparable<Organism> {
 
-    private int strength;
-    private int initiative;
-    private int[] positionXY;
-    private int age;
-    private boolean isAlive;
-    private String symbol;
-    private World world;
+
+    protected Animal() {
+    }
+
 
     @Override
     public void action() {
@@ -26,13 +23,6 @@ public abstract class Animal extends Organism implements Comparable<Organism> {
     @Override
     public void colission(int[] collisionPos) {
         super.colission(collisionPos);
-    }
-
-
-
-    @Override
-    public int[] calculateNewCoordinates() {
-        return super.calculateNewCoordinates();
     }
 
 
