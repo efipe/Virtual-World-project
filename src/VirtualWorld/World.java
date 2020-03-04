@@ -87,7 +87,8 @@ public class World {
                 new Belladonna(checkIfPositionIsAvailable(), this),
                 new Grass(checkIfPositionIsAvailable(), this),
                 new Guarana(checkIfPositionIsAvailable(), this),
-                new SowThistle(checkIfPositionIsAvailable(), this)
+                new SowThistle(checkIfPositionIsAvailable(), this),
+                new Human(checkIfPositionIsAvailable(),this)
         );
         recreateWorldMap();
     }
@@ -108,8 +109,8 @@ public class World {
             int posX = new SplittableRandom().nextInt(0, columns-1);
             int posY = new SplittableRandom().nextInt(0, rows-1);
             if (worldMap[posX][posY] == null) {
-                condition = true;
                 newCoordinates = new int[]{posX, posY};
+                condition = true;
             }
         }
         return newCoordinates;
@@ -135,9 +136,6 @@ public class World {
         return tempList;
     }
 
-    public void setTempList(List<Organism> tempList) {
-        this.tempList = tempList;
-    }
 }
 
 

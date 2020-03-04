@@ -33,7 +33,7 @@ public abstract class Organism implements Comparable<Organism> {
 
 
     public void colission(int[] collisionPos) {
-        // Todo switches!!!
+        // Todo switches
         Organism organism = world.getWorldMap()[collisionPos[0]][collisionPos[1]];
 
         if (organism.getSymbol().equals("T")) {
@@ -63,7 +63,6 @@ public abstract class Organism implements Comparable<Organism> {
                 setAlive(false);
             }
         }
-
     }
 
     public void reproduction(int[] collisionPos) {
@@ -89,7 +88,6 @@ public abstract class Organism implements Comparable<Organism> {
         return position;
     }
 
-
     @Override
     public int compareTo(Organism anotherOrganism) {
         int compareValue = 0;
@@ -112,7 +110,6 @@ public abstract class Organism implements Comparable<Organism> {
     public String toString() {
         return this.symbol;
     }
-
 
     public int getAge() {
         return age;

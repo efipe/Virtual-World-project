@@ -9,6 +9,7 @@ public class Turtle extends Animal {
 
 
     public Turtle(int[] positionXY, World world) {
+        this.strength = 3;
         this.initiative = 1;
         this.positionXY = positionXY;
         this.symbol = "T";
